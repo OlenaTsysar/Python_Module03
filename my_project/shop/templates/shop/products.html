@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+
+<ul class="Products_list">
+    {% for prod in products %}
+        <li class="products_item">
+            <h1>{{prod.title}}</h1>
+            <p>{{prod.description}}</p>
+            <span>{{prod.price}} Kc</span>
+            <span>{{quantity}}</span>
+            <a href="{% url 'product_detail_page' prod.id%}">Podrobnee</a>
+
+        </li>
+        
+    {% endfor %}
+
+</ul>
+
+{% endblock main_content %}
+

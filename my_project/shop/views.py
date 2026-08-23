@@ -1,28 +1,146 @@
 from django.shortcuts import render
-from django.http import HttpRequest
+from django.http import HttpResponse
+
+products = [
+{
+        "id": 1,
+        "title": "Ноутбук",
+        "description": "Универсальный ноутбук для работы, учебы и повседневных задач. Подходит для работы с документами, просмотра фильмов, общения в интернете и запуска большинства офисных приложений.",
+        "price": 25000,
+        "quantity": 5
+    },
+    {
+        "id": 2,
+        "title": "Смартфон",
+        "description": "Современный смартфон с большим экраном, хорошей камерой и производительным процессором. Подходит для социальных сетей, фотографий, просмотра видео, игр и повседневного использования.",
+        "price": 15000,
+        "quantity": 12
+    },
+    {
+        "id": 3,
+        "title": "Наушники",
+        "description": "Беспроводные Bluetooth-наушники с качественным звуком и встроенным микрофоном. Удобны для прослушивания музыки, просмотра фильмов, онлайн-звонков и занятий спортом.",
+        "price": 2500,
+        "quantity": 20
+    },
+    {
+        "id": 4,
+        "title": "Клавиатура",
+        "description": "Механическая клавиатура с удобными клавишами и быстрым откликом. Хорошо подходит для программирования, работы с текстом, повседневного использования и компьютерных игр.",
+        "price": 1800,
+        "quantity": 8
+    },
+    {
+        "id": 5,
+        "title": "Мышь",
+        "description": "Беспроводная компьютерная мышь с эргономичной формой и точным сенсором. Подходит для работы за компьютером, учебы, просмотра сайтов и выполнения повседневных задач.",
+        "price": 900,
+        "quantity": 15
+    },
+    {
+        "id": 6,
+        "title": "Монитор",
+        "description": "Монитор с диагональю 24 дюйма и разрешением Full HD. Обеспечивает четкое изображение и подходит для работы, программирования, просмотра фильмов и подключения к игровому компьютеру.",
+        "price": 6500,
+        "quantity": 4
+    },
+    {
+        "id": 7,
+        "title": "Веб-камера",
+        "description": "Веб-камера с разрешением Full HD и встроенным микрофоном. Подходит для онлайн-занятий, видеоконференций, общения с друзьями и проведения рабочих встреч.",
+        "price": 1200,
+        "quantity": 7
+    },
+    {
+        "id": 8,
+        "title": "Колонки",
+        "description": "Компактные компьютерные колонки с чистым и достаточно громким звуком. Подходят для прослушивания музыки, просмотра фильмов, игр и использования вместе с ноутбуком или компьютером.",
+        "price": 1100,
+        "quantity": 10
+    },
+    {
+        "id": 9,
+        "title": "Флешка",
+        "description": "USB-флешка объемом 64 ГБ для хранения и переноса документов, фотографий, видео и других файлов. Компактный корпус позволяет удобно носить накопитель с собой.",
+        "price": 450,
+        "quantity": 30
+    },
+    {
+        "id": 10,
+        "title": "Power Bank",
+        "description": "Портативный внешний аккумулятор емкостью 10000 mAh. Позволяет несколько раз зарядить смартфон и подходит для поездок, путешествий и ситуаций, когда рядом нет розетки.",
+        "price": 1300,
+        "quantity": 18
+    },
+    {
+        "id": 11,
+        "title": "USB-кабель",
+        "description": "Прочный USB-кабель для зарядки мобильных устройств и передачи данных. Подходит для ежедневного использования дома, на работе или в автомобиле.",
+        "price": 250,
+        "quantity": 40
+    },
+    {
+        "id": 12,
+        "title": "Роутер",
+        "description": "Беспроводной Wi-Fi роутер для организации домашней или небольшой офисной сети. Обеспечивает стабильное подключение смартфонов, ноутбуков, телевизоров и других устройств к интернету.",
+        "price": 1900,
+        "quantity": 6
+    },
+    {
+        "id": 13,
+        "title": "SSD накопитель",
+        "description": "Быстрый твердотельный накопитель объемом 1 ТБ для хранения операционной системы, программ, игр и пользовательских файлов. Позволяет значительно ускорить загрузку компьютера и приложений.",
+        "price": 3200,
+        "quantity": 9
+    },
+    {
+        "id": 14,
+        "title": "Микрофон",
+       "description": "Настольный USB-микрофон для записи голоса, проведения онлайн-занятий, видеоконференций, стримов и записи подкастов. Подключается напрямую к компьютеру без дополнительного оборудования.",
+        "price": 2100,
+        "quantity": 5
+    },
+    {
+        "id": 15,
+        "title": "Подставка для ноутбука",
+        "description": "Регулируемая подставка для ноутбука, которая помогает расположить экран на комфортной высоте и улучшает циркуляцию воздуха вокруг устройства во время длительной работы.",
+        "price": 750,
+        "quantity": 14
+    }
+]
 
 def index(request):
-    return HttpRequest("Index")
+    return render(request, 'shop/index.html')
 
 def about(request):
-    return HttpRequest('About')
+    return render(request, 'shop/about.html')
 
 def contact(request):
-    return HttpRequest('Contact')
+    return render(request, 'shop/contact.html')
 
 def product_list(request):
-    return HttpRequest('Product_list')
+    context = {
+
+        "products": products
+    }
+
+    return render(request, 'shop/products.html', context)
 
 def product_detail(request, pk):
-    return HttpRequest('Product_detail')
+    context = {}
+    for prod in products:
+        if prod["id"] == pk:
+            context["prod"] = prod 
+    return render(request, 'shop/product_detail.html', context)
+        
 
 def login_view(request):
-    return HttpRequest('Login_view')
+    return render(request, 'shop/login.html')
 
 def register_view(request):
-    return HttpRequest('Register_view')
+    return render(request, 'shop/register.html')
 
 def logout_view(request):
-    return HttpRequest('Logout_view')
+    return HttpResponse('Logout_view')
 
 # Create your views here.

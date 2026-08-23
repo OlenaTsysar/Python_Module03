@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+
+
+<ul class="Products_list">
+    {% if prod %}
+    
+    <li class="products_item">
+        <h1>{{prod.title}}</h1>
+        <p>{{prod.description}}</p>
+        <span>{{prod.price}} Kc</span>
+        <span>{{prod.quantity}}</span>
+        <a href="{% url 'products_page'%}">Nazad</a>
+
+    </li>
+
+    {% else %}
+
+    <p>Product ne naiden</p>
+    {% endif %}
+</ul>
+
+{% endblock main_content %}

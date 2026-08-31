@@ -143,4 +143,7 @@ def register_view(request):
 def logout_view(request):
     return HttpResponse('Logout_view')
 
+def cart_view(request):
+    return HttpResponse('Cart_view')
+
 # Create your views here.

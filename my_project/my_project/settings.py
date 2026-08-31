@@ -75,8 +75,12 @@ WSGI_APPLICATION = 'my_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'module03base',           # Имя вашей базы данных
+        'USER': 'myuser',         # Имя пользователя
+        'PASSWORD': 'mypassword', # Пароль пользователя
+        'HOST': 'localhost',      # Хост (обычно localhost)
+        'PORT': '5432',           # Порт PostgreSQL (по умолчанию 5432)
     }
 }
 
@@ -126,3 +130,5 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
+
+AUTH_USER_MODEL = 'shop.User'
